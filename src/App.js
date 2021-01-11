@@ -5,6 +5,7 @@ import Navbar from "./components/layout/Navbar";
 import DiaryDetails from "./components/diaries/DiaryDetails";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
+import CreateDiary from "./components/diaries/CreateDiary";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/diary/:id" component={DiaryDetails} />
         <Route path="/signin" component={SignIn} />
         <Route path="/signup" component={SignUp} />
+        <Route path="/create_diary" component={CreateDiary} />
       </Switch>
     </Router>
   );
