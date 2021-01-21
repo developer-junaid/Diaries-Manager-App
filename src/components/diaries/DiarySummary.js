@@ -2,7 +2,7 @@ import React from "react";
 
 const DiarySummary = () => {
   return (
-    <div className="card z-depth-2 project-summary">
+    <div className="card hoverable z-depth-2 project-summary">
       <div className="card-content grey-text text-darken-3">
         <div className="card-title">
           Title

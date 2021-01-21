@@ -5,16 +5,20 @@ import { Link } from "react-router-dom";
 const DiariesList = () => {
   return (
     <div className="project-list section">
+      <h4>Diaries</h4>
+
+      <div class="divider"></div>
+
       <DiarySummary />
       <DiarySummary />
       <DiarySummary />
-      <div class="fixed-action-btn">
+      <div className="fixed-action-btn">
         <Link
           title="add diary"
-          class="btn-floating btn-large waves-effect waves-light green"
+          className="btn-floating btn-large  waves-effect hoverable waves-light green"
           to="/create_diary"
         >
-          <i class="material-icons">add</i>
+          <i className="material-icons">add</i>
         </Link>
       </div>
     </div>
