@@ -6,9 +6,6 @@ const SignedInLinks = (props) => {
   return (
     <ul className="right">
       <li>
-        <NavLink to="/create_diary">New Diary</NavLink>
-      </li>
-      <li>
         <NavLink to="/">Log Out</NavLink>
       </li>
       <li>
