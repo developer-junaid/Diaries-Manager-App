@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { createDiary } from "../../store/actions/diaryActions";
+import { connect } from "react-redux";
 
 // SignIn Class Component
 class CreateDiary extends Component {
@@ -18,8 +20,8 @@ class CreateDiary extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    // Sign User In
-    console.log(this.state);
+    // Create diary
+    this.props.createDiary(this.state);
   };
 
   // Render
@@ -76,4 +78,13 @@ class CreateDiary extends Component {
   }
 }
 
-export default CreateDiary;
+// Map Dispatch to props
+const mapDispatchToProps = (dispatch) => {
+  // Attach these to props
+  return {
+    // Take diary and pass to createDiary action creator
+    createDiary: (diary) => dispatch(createDiary(diary)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CreateDiary);

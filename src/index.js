@@ -3,12 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./store/reducers/rootReducer";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
-// Store
-const store = createStore(rootReducer);
+// Store and setup thunk
+// By applying thunk we can return functions in our action creators
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 // Render
 ReactDOM.render(

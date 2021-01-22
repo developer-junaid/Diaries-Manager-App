@@ -57,7 +57,16 @@ const initialState = {
 
 // Auth Reducer
 const diaryReducer = (state = initialState, action) => {
-  return state;
+  // Take Actions
+  switch (action.type) {
+    // CREATE_DIARY
+    case "CREATE_DIARY":
+      console.log("created diary", action.diary);
+      return state;
+
+    default:
+      return state;
+  }
 };
 
 export default diaryReducer;
