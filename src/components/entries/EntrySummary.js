@@ -19,13 +19,7 @@ const EntrySummary = () => {
           </a>
         </div>
 
-        {/* <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ipsa
-          praesentium quis accusamus dignissimos voluptatum vel cumque
-          reprehenderit fugiat odit dolorem maiores dolore ullam sunt doloremque
-          aut veritatis, est sint.
-        </p> */}
-        <p class="truncate">
+        <p>
           This is a dummy content for entries, if this content is too long, it
           will be truncated, like this
         </p>
