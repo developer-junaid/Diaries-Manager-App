@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 const EntriesList = ({ id }) => {
   return (
     <div className="project-list section">
-      <h4>Entries</h4>
+      <h4 className="card-title" style={{ color: "#424242" }}>
+        Entries
+      </h4>
       <div className="divider"></div>
       <EntrySummary />
       <EntrySummary />
