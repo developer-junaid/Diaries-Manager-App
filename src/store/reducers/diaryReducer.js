@@ -16,11 +16,6 @@ const initialState = {
           title: "Dolmen Mall",
           content: "We did shopping and eating",
         },
-        {
-          id: "3",
-          title: "Do darya restaurant",
-          content: "We did dinner there",
-        },
       ],
     },
     {
@@ -32,16 +27,6 @@ const initialState = {
           id: "1",
           title: "Resham gali",
           content: "We enjoyed alot, purchasing clothes",
-        },
-        {
-          id: "2",
-          title: "Boulevard Mall",
-          content: "We did shopping and eating there",
-        },
-        {
-          id: "3",
-          title: "Hyderabad Darbar",
-          content: "We did dinner there, it was fun",
         },
       ],
     },

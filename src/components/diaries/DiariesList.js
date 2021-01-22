@@ -11,9 +11,11 @@ const DiariesList = ({ diaries }) => {
         Diaries
       </h4>
       <div className="divider"></div>
-      <DiarySummary />
-      <DiarySummary />
-      <DiarySummary />
+
+      {diaries &&
+        diaries.map((diary) => {
+          return <DiarySummary key={diary.id} diary={diary} />;
+        })}
       <div className="fixed-action-btn">
         <Link
           title="create new diary"

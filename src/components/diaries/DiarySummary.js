@@ -1,13 +1,19 @@
 import React from "react";
 
-const DiarySummary = () => {
+const DiarySummary = ({ diary }) => {
+  // variables
+  const title = diary.title;
+  const type = diary.type;
+
   return (
     <div className="card hoverable z-depth-2 diary-summary">
       <div className="card-content grey-text text-darken-3">
         <div className="card-title">
-          Title
+          {title}
           <a href="#!" className="secondary-content">
-            <i className="material-icons">lock</i>
+            <i className="material-icons">
+              {type === "private" ? "lock_outline" : "lock_open"}
+            </i>
           </a>
         </div>
 
