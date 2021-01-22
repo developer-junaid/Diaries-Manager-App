@@ -6,12 +6,12 @@ const DiarySummary = () => {
       <div className="card-content grey-text text-darken-3">
         <div className="card-title">
           Title
-          <a href="#!" class="secondary-content">
-            <i class="material-icons">lock</i>
+          <a href="#!" className="secondary-content">
+            <i className="material-icons">lock</i>
           </a>
         </div>
 
-        <span class="new badge" data-badge-caption="saved entries">
+        <span className="new badge" data-badge-caption="saved entries">
           3
         </span>
 
