@@ -3,8 +3,6 @@ import DiarySummary from "./DiarySummary";
 import { Link } from "react-router-dom";
 
 const DiariesList = ({ diaries }) => {
-  console.log(diaries);
-
   return (
     <div className="project-list section">
       <h4 className="card-title" style={{ color: "#424242" }}>

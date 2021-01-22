@@ -4,6 +4,7 @@ const DiarySummary = ({ diary }) => {
   // variables
   const title = diary.title;
   const type = diary.type;
+  const totalEntries = diary.entries.length;
 
   return (
     <div className="card hoverable z-depth-2 diary-summary">
@@ -17,8 +18,13 @@ const DiarySummary = ({ diary }) => {
           </a>
         </div>
 
-        <span className="new badge" data-badge-caption="saved entries">
-          3
+        <span
+          className="new badge"
+          data-badge-caption={
+            totalEntries > 1 ? "saved entries" : "saved entry"
+          }
+        >
+          {totalEntries}
         </span>
 
         <p>Posted by Author Name</p>
