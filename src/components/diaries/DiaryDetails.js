@@ -9,7 +9,7 @@ const DiaryDetails = (props) => {
     <div className="dashboard container">
       <div className="row">
         <div className="col s12 m6">
-          <EntriesList />
+          <EntriesList id={id} />
         </div>
       </div>
     </div>

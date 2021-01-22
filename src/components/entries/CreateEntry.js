@@ -5,8 +5,7 @@ class CreateEntry extends Component {
   // State
   state = {
     title: "",
-    entries: [],
-    type: "public",
+    content: "",
   };
 
   // Functions
@@ -28,6 +27,7 @@ class CreateEntry extends Component {
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
           <h5 className="grey-text text-darken-3">Create new entry</h5>
+
           <div className="input-field">
             <label htmlFor="title">Title</label>
             <input
@@ -37,36 +37,14 @@ class CreateEntry extends Component {
               onChange={this.handleChange}
             />
           </div>
-          Type:
-          <p>
-            <label>
-              <input
-                className="with-gap"
-                name="type"
-                type="radio"
-                id="type"
-                required
-                defaultChecked
-                value="public"
-                onChange={this.handleChange}
-              />
-              <span>Public</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                className="with-gap"
-                name="type"
-                id="type"
-                required
-                type="radio"
-                value="private"
-                onChange={this.handleChange}
-              />
-              <span>Private</span>
-            </label>
-          </p>
+          <div className="input-field">
+            <label htmlFor="content">Entry Content</label>
+            <textarea
+              id="content"
+              onChange={this.handleChange}
+              className="materialize-textarea"
+            ></textarea>
+          </div>
           <div className="input-field">
             <button className="btn pink lighten-1 z-depth-0">Create</button>
           </div>

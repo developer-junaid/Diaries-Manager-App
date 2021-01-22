@@ -14,7 +14,7 @@ const DiariesList = () => {
         <Link
           title="create new diary"
           className="btn-floating btn-large  waves-effect hoverable waves-light green"
-          to="/create_diary"
+          to="/create"
         >
           <i className="material-icons">add</i>
         </Link>

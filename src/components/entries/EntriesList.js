@@ -2,11 +2,11 @@ import React from "react";
 import EntrySummary from "./EntrySummary";
 import { Link } from "react-router-dom";
 
-const EntriesList = () => {
+const EntriesList = ({ id }) => {
   return (
     <div className="project-list section">
       <h4>Entries</h4>
-      <div class="divider"></div>
+      <div className="divider"></div>
       <EntrySummary />
       <EntrySummary />
       <EntrySummary />
@@ -14,7 +14,7 @@ const EntriesList = () => {
         <Link
           title="create new entry"
           className="btn-floating btn-large  waves-effect hoverable waves-light green"
-          to="/create_entry"
+          to={`/diary/${id}/create`}
         >
           <i className="material-icons">add</i>
         </Link>
