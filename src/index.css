@@ -30,6 +30,6 @@ input[type="password"]:not(.browser-default):focus:not([readonly]) {
   box-shadow: none;
 }
 
-.diary-summary {
+i {
   cursor: pointer;
 }

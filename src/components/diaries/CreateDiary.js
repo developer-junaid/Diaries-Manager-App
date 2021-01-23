@@ -1,82 +1,89 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { createDiary } from "../../store/actions/diaryActions";
 import { connect } from "react-redux";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
 
 // SignIn Class Component
-class CreateDiary extends Component {
+const CreateDiary = (props) => {
+  const history = useHistory();
+
   // State
-  state = {
+  const [state, setState] = useState({
     title: "",
     entries: [],
     type: "public",
-  };
+  });
 
   // Functions
-  handleChange = (e) => {
-    this.setState({
+  const handleChange = (e) => {
+    setState({
       [e.target.id]: e.target.value,
     });
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // Create diary
-    this.props.createDiary(this.state);
+    props.createDiary(state);
+    // Show alert
+    Swal.fire({
+      icon: "success",
+      title: "Diary Created!",
+      showConfirmButton: false,
+      timer: 1500,
+    }).then(() => {
+      // Redirect to dashboard
+      history.push("/");
+    });
   };
 
   // Render
-  render() {
-    return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Create new diary</h5>
-          <div className="input-field">
-            <label htmlFor="title">Title</label>
+  return (
+    <div className="container">
+      <form onSubmit={handleSubmit} className="white">
+        <h5 className="grey-text text-darken-3">Create new diary</h5>
+        <div className="input-field">
+          <label htmlFor="title">Title</label>
+          <input required type="text" id="title" onChange={handleChange} />
+        </div>
+        Type:
+        <p>
+          <label>
             <input
+              className="with-gap"
+              name="type"
+              type="radio"
+              id="type"
               required
-              type="text"
-              id="title"
-              onChange={this.handleChange}
+              defaultChecked
+              value="public"
+              onChange={handleChange}
             />
-          </div>
-          Type:
-          <p>
-            <label>
-              <input
-                className="with-gap"
-                name="type"
-                type="radio"
-                id="type"
-                required
-                defaultChecked
-                value="public"
-                onChange={this.handleChange}
-              />
-              <span>Public</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input
-                className="with-gap"
-                name="type"
-                id="type"
-                required
-                type="radio"
-                value="private"
-                onChange={this.handleChange}
-              />
-              <span>Private</span>
-            </label>
-          </p>
-          <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Create</button>
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
+            <span>Public</span>
+          </label>
+        </p>
+        <p>
+          <label>
+            <input
+              className="with-gap"
+              name="type"
+              id="type"
+              required
+              type="radio"
+              value="private"
+              onChange={handleChange}
+            />
+            <span>Private</span>
+          </label>
+        </p>
+        <div className="input-field">
+          <button className="btn pink lighten-1 z-depth-0">Create</button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 // Map Dispatch to props
 const mapDispatchToProps = (dispatch) => {

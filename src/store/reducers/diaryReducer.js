@@ -64,6 +64,11 @@ const diaryReducer = (state = initialState, action) => {
       console.log("created diary", action.diary);
       return state;
 
+    // UPDATE DIARY
+    case "UPDATE_DIARY":
+      console.log("updated diary", action.diary);
+      return state;
+
     default:
       return state;
   }
