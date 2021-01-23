@@ -91,17 +91,16 @@ const DiarySummary = ({ diary, updateDiary }) => {
         <p>Posted by Author Name</p>
 
         <p className="grey-text">23 September, 2am</p>
-        <div className="center-align">
+        <div className="right-align">
           <Link
             to={"/diary/" + diary.id}
-            className="btn btn-small waves-effect center-align waves-light entries-btn"
+            className="btn btn-small waves-effect  waves-light entries-btn"
+            title="View entries"
             style={{
-              marginTop: "0.8rem",
-              width: "100%",
-              backgroundColor: "#424242",
+              width: "9%",
+              backgroundColor: "#4aa69b",
             }}
           >
-            View Entries
             <i className="material-icons right">send</i>
           </Link>
         </div>

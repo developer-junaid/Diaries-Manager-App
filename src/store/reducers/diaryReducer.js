@@ -55,7 +55,7 @@ const initialState = {
   ],
 };
 
-// Auth Reducer
+// Diary Reducer
 const diaryReducer = (state = initialState, action) => {
   // Take Actions
   switch (action.type) {

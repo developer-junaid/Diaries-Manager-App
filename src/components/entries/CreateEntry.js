@@ -1,57 +1,78 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
+import Swal from "sweetalert2";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import { createEntry } from "../../store/actions/entryActions";
 
 // SignIn Class Component
-class CreateEntry extends Component {
+const CreateEntry = (props) => {
+  const history = useHistory();
+  const diaryId = props.match.params.id;
+
   // State
-  state = {
+  const [state, setState] = useState({
     title: "",
     content: "",
-  };
+  });
 
   // Functions
-  handleChange = (e) => {
-    this.setState({
+  const handleChange = (e) => {
+    setState({
+      ...state,
       [e.target.id]: e.target.value,
     });
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    // Sign User In
-    console.log(this.state);
+    // Create entry
+    props.createEntry(state);
+    // Show alert
+    console.log(state);
+    Swal.fire({
+      icon: "success",
+      title: "Entry Created!",
+      showConfirmButton: false,
+      timer: 1500,
+    }).then(() => {
+      // Redirect to dashboard
+      history.push(`/diary/${diaryId}`);
+    });
   };
 
   // Render
-  render() {
-    return (
-      <div className="container">
-        <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Create new entry</h5>
+  return (
+    <div className="container">
+      <form onSubmit={handleSubmit} className="white">
+        <h5 className="grey-text text-darken-3">Create new entry</h5>
+        <div className="input-field">
+          <label htmlFor="title">Title</label>
+          <input required type="text" id="title" onChange={handleChange} />
+        </div>
+        <div className="input-field">
+          <label htmlFor="content">Entry Content</label>
+          <textarea
+            id="content"
+            onChange={handleChange}
+            className="materialize-textarea"
+          ></textarea>
+        </div>
 
-          <div className="input-field">
-            <label htmlFor="title">Title</label>
-            <input
-              required
-              type="text"
-              id="title"
-              onChange={this.handleChange}
-            />
-          </div>
-          <div className="input-field">
-            <label htmlFor="content">Entry Content</label>
-            <textarea
-              id="content"
-              onChange={this.handleChange}
-              className="materialize-textarea"
-            ></textarea>
-          </div>
-          <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Create</button>
-          </div>
-        </form>
-      </div>
-    );
-  }
-}
+        <div className="input-field">
+          <button className="btn pink lighten-1 z-depth-0">Create</button>
+        </div>
+      </form>
+    </div>
+  );
+};
 
-export default CreateEntry;
+// Map Dispatch to props
+const mapDispatchToProps = (dispatch) => {
+  // Attach these to props
+  return {
+    // Take entry and pass to createEntry action creator
+    createEntry: (entry) => dispatch(createEntry(entry)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(CreateEntry);

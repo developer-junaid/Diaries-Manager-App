@@ -18,6 +18,7 @@ const CreateDiary = (props) => {
   // Functions
   const handleChange = (e) => {
     setState({
+      ...state,
       [e.target.id]: e.target.value,
     });
   };

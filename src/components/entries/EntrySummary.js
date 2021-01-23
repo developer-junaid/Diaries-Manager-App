@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { updateEntry } from "../../store/actions/entryActions";
 
 const EntrySummary = ({ entry }) => {
   const title = entry.title;
@@ -39,5 +41,13 @@ const EntrySummary = ({ entry }) => {
     </div>
   );
 };
+// Map Dispatch to props
+const mapDispatchToProps = (dispatch) => {
+  // Attach these to props
+  return {
+    // Take diary and pass to updateDiary action creator
+    updateEntry: (entry) => dispatch(updateEntry(entry)),
+  };
+};
 
-export default EntrySummary;
+export default connect(null, mapDispatchToProps)(EntrySummary);
