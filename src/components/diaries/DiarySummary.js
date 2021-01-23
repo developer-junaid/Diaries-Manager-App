@@ -18,12 +18,14 @@ const DiarySummary = ({ diary, updateDiary }) => {
       input: "text",
       inputValue: diary.title,
       showCancelButton: true,
+      confirmButtonColor: "green",
       allowOutsideClick: false,
       inputValidator: (value) => {
         if (!value) {
           return "You need to write something!";
         }
       },
+      confirmButtonText: "Change",
     }).then((result) => {
       if (result.dismiss === Swal.DismissReason.cancel) {
         // If cancelled
@@ -40,6 +42,9 @@ const DiarySummary = ({ diary, updateDiary }) => {
         Swal.fire({
           title: "Success!",
           icon: "success",
+          text: "Diary updated",
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
     });
