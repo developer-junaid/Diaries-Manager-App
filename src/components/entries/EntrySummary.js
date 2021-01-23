@@ -10,7 +10,12 @@ const EntrySummary = ({ entry }) => {
         <div className="card-title">
           {title}
           <a href="#!" title="edit" className="secondary-content">
-            <i className="material-icons">create</i>
+            <i
+              style={{ color: "#424242" }}
+              className="material-icons edit-icon"
+            >
+              create
+            </i>
           </a>
           <a
             href="#!"
@@ -18,7 +23,12 @@ const EntrySummary = ({ entry }) => {
             title="view"
             className="secondary-content"
           >
-            <i className="material-icons">visibility</i>
+            <i
+              style={{ color: "#424242" }}
+              className="material-icons edit-icon"
+            >
+              visibility
+            </i>
           </a>
         </div>
 

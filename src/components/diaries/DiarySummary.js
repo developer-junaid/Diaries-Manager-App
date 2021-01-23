@@ -60,7 +60,12 @@ const DiarySummary = ({ diary, updateDiary }) => {
             style={{ color: "#4aa69b" }}
             className="primary-content"
           >
-            <i className="material-icons">create</i>
+            <i
+              style={{ color: "#424242" }}
+              className="material-icons edit-icon"
+            >
+              create
+            </i>
           </a>
           &nbsp;{title}
           <a
@@ -68,7 +73,7 @@ const DiarySummary = ({ diary, updateDiary }) => {
             href="#!"
             className="secondary-content"
           >
-            <i className="material-icons">
+            <i style={{ color: "#424242" }} className="material-icons">
               {type === "private" ? "lock_outline" : "lock_open"}
             </i>
           </a>
@@ -89,8 +94,12 @@ const DiarySummary = ({ diary, updateDiary }) => {
         <div className="center-align">
           <Link
             to={"/diary/" + diary.id}
-            className="btn btn-small waves-effect center-align waves-light"
-            style={{ marginTop: "0.8rem", width: "100%" }}
+            className="btn btn-small waves-effect center-align waves-light entries-btn"
+            style={{
+              marginTop: "0.8rem",
+              width: "100%",
+              backgroundColor: "#424242",
+            }}
           >
             View Entries
             <i className="material-icons right">send</i>

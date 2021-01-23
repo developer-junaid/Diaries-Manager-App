@@ -7,10 +7,13 @@ const DiaryDetails = (props) => {
   const id = props.match.params.id; // Get diary ID
   const { diaries } = props;
   let entries = [];
+  let diaryName = "";
+
   diaries.map((diary) => {
     // Store this diarie's entries
     if (id === diary.id) {
       entries = diary.entries;
+      diaryName = diary.title;
     }
   });
 
@@ -18,7 +21,7 @@ const DiaryDetails = (props) => {
     <div className="dashboard container">
       <div className="row">
         <div className="col s12 m6">
-          <EntriesList id={id} entries={entries} />
+          <EntriesList id={id} entries={entries} diaryName={diaryName} />
         </div>
       </div>
     </div>

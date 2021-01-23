@@ -2,11 +2,11 @@ import React from "react";
 import EntrySummary from "./EntrySummary";
 import { Link } from "react-router-dom";
 
-const EntriesList = ({ id, entries }) => {
+const EntriesList = ({ id, entries, diaryName }) => {
   return (
     <div className="project-list section">
       <h4 className="card-title" style={{ color: "#424242" }}>
-        Entries
+        {diaryName}
       </h4>
       <div className="divider"></div>
 

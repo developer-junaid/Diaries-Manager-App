@@ -33,3 +33,11 @@ input[type="password"]:not(.browser-default):focus:not([readonly]) {
 i {
   cursor: pointer;
 }
+
+.edit-icon:hover {
+  color: green !important;
+}
+
+.entries-btn:hover {
+  background-color: #4aa69b !important;
+}
