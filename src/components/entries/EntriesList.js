@@ -2,16 +2,17 @@ import React from "react";
 import EntrySummary from "./EntrySummary";
 import { Link } from "react-router-dom";
 
-const EntriesList = ({ id }) => {
+const EntriesList = ({ id, entries }) => {
   return (
     <div className="project-list section">
       <h4 className="card-title" style={{ color: "#424242" }}>
         Entries
       </h4>
       <div className="divider"></div>
-      <EntrySummary />
-      <EntrySummary />
-      <EntrySummary />
+
+      {entries &&
+        entries.map((entry) => <EntrySummary key={entry.id} entry={entry} />)}
+
       <div className="fixed-action-btn">
         <Link
           title="create new entry"
