@@ -28,7 +28,6 @@ const CreateEntry = (props) => {
     // Create entry
     props.createEntry(state);
     // Show alert
-    console.log(state);
     Swal.fire({
       icon: "success",
       title: "Entry Created!",

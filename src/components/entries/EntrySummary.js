@@ -1,17 +1,25 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { connect } from "react-redux";
 import { updateEntry } from "../../store/actions/entryActions";
+import { useHistory } from "react-router-dom";
 
-const EntrySummary = ({ entry }) => {
-  const title = entry.title;
-  const content = entry.content;
+const EntrySummary = (props) => {
+  const title = props.entry.title;
+  const content = props.entry.content;
+  const history = useHistory();
+
+  // Handle Click
+  const handleClick = () => {
+    history.push(`/diary/${props.diaryId}/${props.entry.id}/edit`);
+  };
 
   return (
     <div className="card hoverable z-depth-2 entry-summary">
       <div className="card-content grey-text text-darken-3">
         <div className="card-title">
           {title}
-          <a href="#!" title="edit" className="secondary-content">
+          <a onClick={handleClick} title="edit" className="secondary-content">
             <i
               style={{ color: "#424242" }}
               className="material-icons edit-icon"
@@ -41,6 +49,7 @@ const EntrySummary = ({ entry }) => {
     </div>
   );
 };
+
 // Map Dispatch to props
 const mapDispatchToProps = (dispatch) => {
   // Attach these to props

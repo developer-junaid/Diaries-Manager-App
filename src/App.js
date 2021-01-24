@@ -7,6 +7,7 @@ import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import CreateDiary from "./components/diaries/CreateDiary";
 import CreateEntry from "./components/entries/CreateEntry";
+import EditEntry from "./components/entries/EditEntry";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/create" component={CreateDiary} />
         <Route path="/diary/:id/create" component={CreateEntry} />
+        <Route path="/diary/:id/:id/edit" component={EditEntry} />
       </Switch>
     </Router>
   );

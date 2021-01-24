@@ -11,7 +11,9 @@ const EntriesList = ({ id, entries, diaryName }) => {
       <div className="divider"></div>
 
       {entries &&
-        entries.map((entry) => <EntrySummary key={entry.id} entry={entry} />)}
+        entries.map((entry) => (
+          <EntrySummary diaryId={id} key={entry.id} entry={entry} />
+        ))}
 
       <div className="fixed-action-btn">
         <Link
