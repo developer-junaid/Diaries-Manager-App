@@ -2,6 +2,8 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import "firebase/auth";
 
+// Your web app's Firebase configuration
+
 var firebaseConfig = {
   apiKey: "AIzaSyBGDD9xd89vlHyVcINP7eWVgzuou7yH0NE",
   authDomain: "diaries-manager.firebaseapp.com",
@@ -12,7 +14,7 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig); // Connect to firebase project
 firebase.firestore().settings({ timestampsInSnapshots: true });
 
 export default firebase;
