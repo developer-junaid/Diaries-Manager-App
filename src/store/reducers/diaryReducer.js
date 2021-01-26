@@ -64,6 +64,11 @@ const diaryReducer = (state = initialState, action) => {
       console.log("created diary", action.diary);
       return state;
 
+    // CREATE_DIARY_ERROR
+    case "CREATE_DIARY_ERROR":
+      console.log("ERROR creating diary", action.err);
+      return state;
+
     // UPDATE DIARY
     case "UPDATE_DIARY":
       console.log("updated diary", action.diary);

@@ -11,7 +11,6 @@ const CreateDiary = (props) => {
   // State
   const [state, setState] = useState({
     title: "",
-    entries: [],
     type: "public",
   });
 
