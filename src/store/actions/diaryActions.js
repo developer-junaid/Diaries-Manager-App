@@ -1,6 +1,6 @@
 // Create Diary Action
 export const createDiary = (diary) => {
-  return (dispatch, getState) => {
+  return (dispatch, getState, { getFirebase }) => {
     // Make Async call to database
     // Then dispatch an action
     dispatch({ type: "CREATE_DIARY", diary });

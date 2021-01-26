@@ -3,21 +3,45 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+// Redux
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./store/reducers/rootReducer";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+// Firebase
+import firebase from "./config/fbConfig";
+import { ReactReduxFirebaseProvider, getFirebase } from "react-redux-firebase";
+import { createFirestoreInstance } from "redux-firestore";
 
 // Store and setup thunk
 // By applying thunk we can return functions in our action creators
-const store = createStore(rootReducer, applyMiddleware(thunk));
+const store = createStore(
+  rootReducer,
+  applyMiddleware(thunk.withExtraArgument({ getFirebase }))
+);
+
+// RRF Config
+const rrfConfig = {
+  userProfile: "users",
+  useFirestoreForProfile: true,
+};
+
+// React Redux Firebase - Props
+const rrfProps = {
+  firebase,
+  config: rrfConfig, // For setting up users,
+  dispatch: store.dispatch,
+  createFirestoreInstance,
+};
 
 // Render
 ReactDOM.render(
   <Provider store={store}>
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+    <ReactReduxFirebaseProvider {...rrfProps}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById("root")
 );
