@@ -9,9 +9,13 @@ const EntrySummary = (props) => {
   const content = props.entry.content;
   const history = useHistory();
 
-  // Handle Click
-  const handleClick = () => {
+  // Handle Clicks
+  const handleEditClick = () => {
     history.push(`/diary/${props.diaryId}/${props.entry.id}/edit`);
+  };
+
+  const handleViewClick = () => {
+    history.push(`/diary/${props.diaryId}/${props.entry.id}`);
   };
 
   return (
@@ -19,7 +23,11 @@ const EntrySummary = (props) => {
       <div className="card-content grey-text text-darken-3">
         <div className="card-title">
           {title}
-          <a onClick={handleClick} title="edit" className="secondary-content">
+          <a
+            onClick={handleEditClick}
+            title="edit"
+            className="secondary-content"
+          >
             <i
               style={{ color: "#424242" }}
               className="material-icons edit-icon"
@@ -28,7 +36,7 @@ const EntrySummary = (props) => {
             </i>
           </a>
           <a
-            href="#!"
+            onClick={handleViewClick}
             style={{ margin: "0 1rem" }}
             title="view"
             className="secondary-content"

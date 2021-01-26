@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Dashboard from "./components/dashboard/Dashboard";
 import Navbar from "./components/layout/Navbar";
 import DiaryDetails from "./components/diaries/DiaryDetails";
+import EntryDetails from "./components/entries/EntryDetails";
 import SignIn from "./components/auth/SignIn";
 import SignUp from "./components/auth/SignUp";
 import CreateDiary from "./components/diaries/CreateDiary";
@@ -21,6 +22,7 @@ function App() {
         <Route path="/create" component={CreateDiary} />
         <Route path="/diary/:id/create" component={CreateEntry} />
         <Route path="/diary/:id/:id/edit" component={EditEntry} />
+        <Route path="/diary/:id/:id" component={EntryDetails} />
       </Switch>
     </Router>
   );
