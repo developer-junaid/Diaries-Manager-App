@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 const EntrySummary = (props) => {
   const title = props.entry.title;
   const content = props.entry.content;
+  const createdAt = props.entry.createdAt;
   const history = useHistory();
 
   // Handle Clicks
@@ -52,7 +53,7 @@ const EntrySummary = (props) => {
 
         <p>{content}</p>
 
-        <p className="grey-text">23 September, 2am</p>
+        <p className="grey-text">{createdAt.seconds}</p>
       </div>
     </div>
   );

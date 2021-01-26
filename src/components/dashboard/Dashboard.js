@@ -25,12 +25,13 @@ class Dashboard extends Component {
 const mapStateToProps = (state) => {
   return {
     diaries: state.firestore.ordered.diaries,
+    entries: state.firestore.ordered.entries,
   };
 };
 
 export default compose(
   connect(mapStateToProps),
   firestoreConnect([
-    { collection: "diaries" }, // Collection
+    { collection: "diaries" }, // Collection diaries
   ])
 )(Dashboard);
