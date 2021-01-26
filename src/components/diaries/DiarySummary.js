@@ -9,7 +9,7 @@ const DiarySummary = ({ diary, updateDiary }) => {
   // variables
   const title = diary.title;
   const type = diary.type;
-  const totalEntries = diary.entries.length;
+  // const totalEntries = diary.entries.length;
 
   // Handle Click
   const handleClick = () => {
@@ -79,14 +79,14 @@ const DiarySummary = ({ diary, updateDiary }) => {
           </a>
         </div>
 
-        <span
+        {/* <span
           className="new badge"
           data-badge-caption={
             totalEntries > 1 ? "saved entries" : "saved entry"
           }
         >
           {totalEntries}
-        </span>
+        </span> */}
 
         <p>Posted by Author Name</p>
 
