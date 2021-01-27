@@ -92,17 +92,31 @@ const DiarySummary = ({ diary, updateDiary }) => {
 
         <p className="grey-text">23 September, 2am</p>
         <div className="right-align">
-          <Link
-            to={"/diary/" + diary.id}
-            className="btn btn-small waves-effect  waves-light entries-btn"
-            title="View entries"
-            style={{
-              width: "9%",
-              backgroundColor: "#4aa69b",
-            }}
-          >
-            <i className="material-icons right">send</i>
-          </Link>
+          {totalEntries > 0 ? (
+            <Link
+              to={"/diary/" + diary.id}
+              className="btn btn-small waves-effect  waves-light entries-btn"
+              title="View entries"
+              style={{
+                width: "9%",
+                backgroundColor: "#4aa69b",
+              }}
+            >
+              <i className="material-icons right">send</i>
+            </Link>
+          ) : (
+            <Link
+              to={"/diary/" + diary.id + "/create"}
+              className="btn btn-small waves-effect  waves-light entries-btn"
+              title="Add entry"
+              style={{
+                width: "9%",
+                backgroundColor: "#4aa69b",
+              }}
+            >
+              <i className="material-icons right">add</i>
+            </Link>
+          )}
         </div>
       </div>
     </div>
