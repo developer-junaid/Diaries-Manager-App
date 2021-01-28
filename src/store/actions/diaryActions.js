@@ -4,13 +4,12 @@ export const createDiary = (diary) => {
     // Make Async call to database
     // Initialize Firestore Database
     // Setup Database
-    const firestore = getFirebase().firestore();
+    const db = getFirebase().firestore();
     // const profile = getState().firebase.profile;
     // const authorId = getState().firebase.auth.uid;
 
     // Add Diary to collection
-    firestore
-      .collection("diaries")
+    db.collection("diaries")
       .add({
         ...diary, // Title and type
         authorFirstName: "Hassan", // authorFirstName
