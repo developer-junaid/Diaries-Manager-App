@@ -13,10 +13,10 @@ export const createDiary = (diary) => {
       .collection("diaries")
       .add({
         ...diary, // Title and type
-        authorFirstName: "Hassan",
-        authorLastName: "Raza",
-        authorId: 46,
-        createdAt: new Date(),
+        authorFirstName: "Hassan", // authorFirstName
+        authorLastName: "Raza", // authorLastName
+        authorId: 46, // authorId
+        createdAt: new Date(), // createdAt
       })
       .then(() => {
         // When Diary is added

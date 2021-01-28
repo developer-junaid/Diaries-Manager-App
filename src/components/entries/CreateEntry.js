@@ -13,6 +13,7 @@ const CreateEntry = (props) => {
   const [state, setState] = useState({
     title: "",
     content: "",
+    diaryId: diaryId,
   });
 
   // Functions

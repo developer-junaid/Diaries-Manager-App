@@ -9,6 +9,11 @@ const entryReducer = (state = initialState, action) => {
       console.log("created entry", action.entry);
       return state;
 
+    // CREATE_ENTRY_ERROR
+    case "CREATE_ENTRY_ERROR":
+      console.log("problem creating entry", action.err);
+      return state;
+
     //  UPDATE_ENTRY
     case "UPDATE_ENTRY":
       console.log("updated entry", action.entry);

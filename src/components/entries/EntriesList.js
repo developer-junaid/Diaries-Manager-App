@@ -11,6 +11,8 @@ const EntriesList = ({ id, entries, diaryName }) => {
     // If entries are there make loader false
     if (entries.length) {
       setIsLoading(false);
+    } else {
+      setIsLoading(true);
     }
   }, [entries]);
 

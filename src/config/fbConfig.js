@@ -4,7 +4,7 @@ import "firebase/auth";
 
 // Your web app's Firebase configuration
 
-var firebaseConfig = {
+export const firebaseConfig = {
   apiKey: "AIzaSyBGDD9xd89vlHyVcINP7eWVgzuou7yH0NE",
   authDomain: "diaries-manager.firebaseapp.com",
   projectId: "diaries-manager",
