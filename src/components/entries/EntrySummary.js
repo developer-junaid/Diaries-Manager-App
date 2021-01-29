@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { updateEntry } from "../../store/actions/entryActions";
 import { useHistory } from "react-router-dom";
+import moment from "moment";
 
 const EntrySummary = (props) => {
   const title = props.entry.title;
@@ -53,7 +54,7 @@ const EntrySummary = (props) => {
 
         <p>{content}</p>
 
-        <p className="grey-text">{createdAt.seconds}</p>
+        <p className="grey-text">{moment(createdAt.toDate()).calendar()}</p>
       </div>
     </div>
   );

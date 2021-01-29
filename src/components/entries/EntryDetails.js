@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { BeatLoader } from "react-spinners";
+import moment from "moment";
 
 function EntryDetails(props) {
   // handle loading state
@@ -10,6 +11,7 @@ function EntryDetails(props) {
   const { entries } = props;
   let entryTitle = "";
   let entryContent = "";
+  let entryCreatedAt;
 
   // Split url to get id's (2 = diaryId) (3=entryId)
   const urlArray = props.match.url.split("/");
@@ -21,6 +23,7 @@ function EntryDetails(props) {
       if (entry.id === entryId) {
         entryTitle = entry.title;
         entryContent = entry.content;
+        entryCreatedAt = entry.createdAt;
       }
     });
 
@@ -57,7 +60,7 @@ function EntryDetails(props) {
             <p>{entryContent}</p>
           </div>
           <div className="card-action grey lighten-4 grey-text">
-            <div>2nd September, 2am</div>
+            <div>{moment(entryCreatedAt.toDate()).calendar()}</div>
           </div>
         </div>
       </div>

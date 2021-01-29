@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { connect } from "react-redux";
 import { updateDiary } from "../../store/actions/diaryActions";
+import moment from "moment";
 
 const DiarySummary = ({ diary, updateDiary }) => {
   // variables
@@ -92,7 +93,9 @@ const DiarySummary = ({ diary, updateDiary }) => {
           Posted by {diary.authorFirstName} {diary.authorLastName}
         </p>
 
-        <p className="grey-text">23 September, 2am</p>
+        <p className="grey-text">
+          {moment(diary.createdAt.toDate()).calendar()}
+        </p>
         <div className="right-align">
           {totalEntries > 0 ? (
             <Link
