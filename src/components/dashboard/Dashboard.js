@@ -4,11 +4,15 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { BeatLoader } from "react-spinners";
+import { Redirect } from "react-router-dom";
 
 // Dashboard
 class Dashboard extends Component {
   render() {
-    const { diaries } = this.props;
+    const { diaries, auth } = this.props;
+    console.log(auth);
+    if (!auth.uid) return <Redirect to="/signin" />;
+
     // Return Dashboard
     if (diaries) {
       return (
@@ -44,6 +48,7 @@ const mapStateToProps = (state) => {
   return {
     diaries: state.firestore.ordered.diaries,
     entries: state.firestore.ordered.entries,
+    auth: state.firebase.auth,
   };
 };
 

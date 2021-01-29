@@ -4,11 +4,13 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { getFirebase } from "react-redux-firebase";
+import { Redirect } from "react-router-dom";
 
 //Project Details
 const DiaryDetails = (props) => {
   const id = props.match.params.id; // Get diary ID
-  const { entries } = props;
+  const { entries, auth } = props;
+
   let entriesToShow = [];
   let [diaryName, setDiaryName] = useState("");
 
@@ -22,6 +24,9 @@ const DiaryDetails = (props) => {
       .get()
       .then((snapshot) => {
         setDiaryName(snapshot.data().title);
+      })
+      .catch((err) => {
+        console.log("NO DATA FOUND");
       });
   }, []);
 
@@ -32,6 +37,8 @@ const DiaryDetails = (props) => {
       }
     });
 
+  // Redirect
+  if (!auth.uid) return <Redirect to="/signin" />;
   return (
     <div className="dashboard container">
       <div className="row">
@@ -47,6 +54,7 @@ const DiaryDetails = (props) => {
 const mapStateToProps = (state) => {
   return {
     entries: state.firestore.ordered.entries,
+    auth: state.firebase.auth,
   };
 };
 

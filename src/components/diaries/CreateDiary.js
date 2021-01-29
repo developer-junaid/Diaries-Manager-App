@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createDiary } from "../../store/actions/diaryActions";
 import { connect } from "react-redux";
 import Swal from "sweetalert2";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 // SignIn Class Component
 const CreateDiary = (props) => {
@@ -14,6 +14,9 @@ const CreateDiary = (props) => {
     type: "public",
     entryIds: [],
   });
+
+  // Redirect
+  if (!props.auth.uid) return <Redirect to="/signin" />;
 
   // Functions
   const handleChange = (e) => {
@@ -86,6 +89,13 @@ const CreateDiary = (props) => {
   );
 };
 
+// Map state
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  };
+};
+
 // Map Dispatch to props
 const mapDispatchToProps = (dispatch) => {
   // Attach these to props
@@ -95,4 +105,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(CreateDiary);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateDiary);
