@@ -5,16 +5,16 @@ export const createDiary = (diary) => {
     // Initialize Firestore Database
     // Setup Database
     const db = getFirebase().firestore();
-    // const profile = getState().firebase.profile;
-    // const authorId = getState().firebase.auth.uid;
+    const profile = getState().firebase.profile; // Get User's Profile
+    const authorId = getState().firebase.auth.uid; // Get User Id
 
     // Add Diary to collection
     db.collection("diaries")
       .add({
         ...diary, // Title and type
-        authorFirstName: "Hassan", // authorFirstName
-        authorLastName: "Raza", // authorLastName
-        authorId: 46, // authorId
+        authorFirstName: profile.firstName, // authorFirstName
+        authorLastName: profile.lastName, // authorLastName
+        authorId: authorId, // authorId
         createdAt: new Date(), // createdAt
       })
       .then(() => {

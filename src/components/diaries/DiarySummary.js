@@ -88,7 +88,9 @@ const DiarySummary = ({ diary, updateDiary }) => {
           {totalEntries}
         </span>
 
-        <p>Posted by Author Name</p>
+        <p>
+          Posted by {diary.authorFirstName} {diary.authorLastName}
+        </p>
 
         <p className="grey-text">23 September, 2am</p>
         <div className="right-align">
