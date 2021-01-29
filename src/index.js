@@ -6,11 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 // Redux
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./store/reducers/rootReducer";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import thunk from "redux-thunk";
 // Firebase
 import firebase from "./config/fbConfig";
-import { ReactReduxFirebaseProvider, getFirebase } from "react-redux-firebase";
+import {
+  isLoaded,
+  ReactReduxFirebaseProvider,
+  getFirebase,
+} from "react-redux-firebase";
 import { createFirestoreInstance } from "redux-firestore";
 
 // Store and setup thunk
@@ -34,17 +38,38 @@ const rrfProps = {
   createFirestoreInstance,
 };
 
+// Auth Is Loaded function
+function AuthIsLoaded({ children }) {
+  const auth = useSelector((state) => state.firebase.auth);
+  if (!isLoaded(auth)) return <div></div>;
+  return children;
+}
+
 // Render
 ReactDOM.render(
   <Provider store={store}>
     <ReactReduxFirebaseProvider {...rrfProps}>
       <React.StrictMode>
-        <App />
+        <AuthIsLoaded>
+          <App />
+        </AuthIsLoaded>
       </React.StrictMode>
     </ReactReduxFirebaseProvider>
   </Provider>,
   document.getElementById("root")
 );
+
+// // Render
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <ReactReduxFirebaseProvider {...rrfProps}>
+//       <AuthIsLoaded>
+//         <App />
+//       </AuthIsLoaded>
+//     </ReactReduxFirebaseProvider>
+//   </Provider>,
+//   document.getElementById("root")
+// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
