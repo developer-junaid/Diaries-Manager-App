@@ -38,3 +38,37 @@ export const signOut = () => {
       });
   };
 };
+
+// SignUp
+export const signUp = (newUser) => {
+  return (dispatch, getState, { getFirebase }) => {
+    // Initialize firebase and firestore
+    const firebase = getFirebase();
+    const db = firebase.firestore();
+
+    // SignUp user
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(newUser.email, newUser.password)
+      .then((resp) => {
+        // Create user in users collection with ID as user's id
+        return db
+          .collection("users")
+          .doc(resp.user.uid)
+          .set({
+            firstName: newUser.firstName,
+            lastName: newUser.lastName,
+            initials: newUser.firstName[0] + newUser.lastName[0],
+          });
+        // returns Promise
+      })
+      .then(() => {
+        // SignUp Success
+        dispatch({ type: "SIGNUP_SUCCESS" });
+      })
+      .catch((err) => {
+        // SignUp Error
+        dispatch({ type: "SIGNUP_ERROR", err });
+      });
+  };
+};
