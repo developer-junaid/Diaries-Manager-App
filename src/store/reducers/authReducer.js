@@ -1,9 +1,22 @@
 // Initial State
-const initialState = {};
+const initialState = {
+  authError: null,
+};
 
 // Auth Reducer
 const authReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case "LOGIN_ERROR":
+      console.log("LOGIN ERROR");
+      return { ...state, authError: "Login failed" };
+
+    case "LOGIN_SUCCESS":
+      console.log("LOGIN SUCCESS");
+      return { ...state, authError: null };
+
+    default:
+      return state;
+  }
 };
 
 export default authReducer;
