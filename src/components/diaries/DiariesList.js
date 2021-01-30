@@ -5,7 +5,10 @@ import { Link } from "react-router-dom";
 const DiariesList = ({ diaries }) => {
   return (
     <div className="project-list section">
-      <h4 className="card-title" style={{ color: "#424242" }}>
+      <h4
+        className="card-title"
+        style={{ color: "#424242", textShadow: "2px 2px 2px #776a6a" }}
+      >
         Diaries
       </h4>
       <div className="divider"></div>

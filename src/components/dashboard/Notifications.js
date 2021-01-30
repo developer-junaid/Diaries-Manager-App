@@ -4,9 +4,15 @@ import moment from "moment";
 const Notifications = ({ notifications }) => {
   return (
     <div className="section">
+      <h4
+        className="card-title"
+        style={{ color: "#424242", textShadow: "2px 2px 2px #776a6a" }}
+      >
+        Notifications
+      </h4>
+      <div className="divider"></div>
       <div className="card z-depth-0">
         <div className="card-content">
-          <span className="card-title">Notifications</span>
           <ul className="notifications">
             {notifications &&
               notifications.map((notification) => {
