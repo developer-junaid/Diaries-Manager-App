@@ -1,4 +1,5 @@
 import { createNotification } from "./functions/functions";
+import Swal from "sweetalert2";
 
 // SignIn
 export const signIn = (credentials) => {
@@ -17,6 +18,16 @@ export const signIn = (credentials) => {
       .then(() => {
         // Login success
         dispatch({ type: "LOGIN_SUCCESS" });
+        // Alert Success
+        // Show alert
+        Swal.fire({
+          icon: "success",
+          title: "Login Success!",
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(() => {
+          // Logic
+        });
       })
       .catch((err) => {
         // Login Error
