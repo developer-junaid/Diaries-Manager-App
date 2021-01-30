@@ -1,3 +1,5 @@
+import { createNotification } from "./functions/functions";
+
 // Create Diary Action
 export const createDiary = (diary) => {
   return (dispatch, getState, { getFirebase }) => {
@@ -21,6 +23,15 @@ export const createDiary = (diary) => {
         // When Diary is added
         // Then dispatch an action
         dispatch({ type: "CREATE_DIARY", diary });
+
+        // // Create Notification
+        const notification = {
+          content: "Added a new project",
+          user: `${profile.firstName} ${profile.lastName}`,
+          time: new Date(),
+        };
+
+        createNotification(db, notification, dispatch);
       })
       .catch((err) => {
         // If anything goes wrong

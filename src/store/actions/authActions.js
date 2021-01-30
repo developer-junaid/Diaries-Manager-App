@@ -1,3 +1,5 @@
+import { createNotification } from "./functions/functions";
+
 // SignIn
 export const signIn = (credentials) => {
   return (dispatch, getState, { getFirebase }) => {
@@ -65,6 +67,15 @@ export const signUp = (newUser) => {
       .then(() => {
         // SignUp Success
         dispatch({ type: "SIGNUP_SUCCESS" });
+
+        // Add Notification for user joined
+        const notification = {
+          content: "Joined the party",
+          user: `${newUser.firstName} ${newUser.lastName}`,
+          time: new Date(),
+        };
+
+        createNotification(db, notification, dispatch);
       })
       .catch((err) => {
         // SignUp Error
