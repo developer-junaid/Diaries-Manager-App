@@ -90,7 +90,10 @@ const DiarySummary = ({ diary, updateDiary }) => {
         </span>
 
         <p>
-          Posted by {diary.authorFirstName} {diary.authorLastName}
+          Posted by{" "}
+          <span className="pink-text">
+            {diary.authorFirstName} {diary.authorLastName}
+          </span>
         </p>
 
         <p className="grey-text">
