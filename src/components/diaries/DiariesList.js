@@ -2,7 +2,7 @@ import React from "react";
 import DiarySummary from "./DiarySummary";
 import { Link } from "react-router-dom";
 
-const DiariesList = ({ diaries }) => {
+const DiariesList = ({ diaries, authorId }) => {
   return (
     <div className="project-list section">
       <h4
@@ -15,7 +15,22 @@ const DiariesList = ({ diaries }) => {
 
       {diaries &&
         diaries.map((diary) => {
-          return <DiarySummary key={diary.id} diary={diary} />;
+          // Show Private diaries to that user only
+          if (diary.type === "private") {
+            if (diary.authorId === authorId) {
+              return (
+                <DiarySummary
+                  key={diary.id}
+                  diary={diary}
+                  authorId={authorId}
+                />
+              );
+            }
+          } else if (diary.type === "public") {
+            return (
+              <DiarySummary key={diary.id} diary={diary} authorId={authorId} />
+            );
+          }
         })}
       <div className="fixed-action-btn">
         <Link

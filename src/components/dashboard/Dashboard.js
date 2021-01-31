@@ -11,7 +11,6 @@ import Notifications from "./Notifications";
 class Dashboard extends Component {
   render() {
     const { diaries, auth, notifications } = this.props;
-    console.log(auth);
     if (!auth.uid) return <Redirect to="/signin" />;
 
     // Return Dashboard
@@ -20,7 +19,7 @@ class Dashboard extends Component {
         <div className="dashboard container">
           <div className="row">
             <div className="col s12 m6">
-              <DiariesList diaries={diaries} />
+              <DiariesList diaries={diaries} authorId={auth.uid} />
             </div>
             <div className="col s12 m5 offset-m1">
               <Notifications notifications={notifications} />

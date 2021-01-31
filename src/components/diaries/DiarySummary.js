@@ -19,7 +19,6 @@ const DiarySummary = ({ diary, updateDiary, userProfile }) => {
     setUserName("You");
   }
 
-  console.log(userProfile);
   // Handle Click
   const handleClick = () => {
     Swal.fire({
@@ -83,7 +82,7 @@ const DiarySummary = ({ diary, updateDiary, userProfile }) => {
             className="secondary-content"
           >
             <i style={{ color: "#424242" }} className="material-icons">
-              {type === "private" ? "lock_outline" : "lock_open"}
+              {type === "private" ? "lock" : "lock_open"}
             </i>
           </a>
         </div>
