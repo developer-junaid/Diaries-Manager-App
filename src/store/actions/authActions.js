@@ -145,6 +145,32 @@ export const signUp = (newUser) => {
         createNotification(db, notification, dispatch);
       })
       .catch((err) => {
+        // Identify the error
+        if (err.code === "auth/weak-password") {
+          // Set error to auth/weak-password
+          // Fire the alert
+          Swal.fire({
+            icon: "error",
+            title: "Weak Password !",
+            text: "Password should be at least 6 characters",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            // Logic
+          });
+        } else if (err.code === "auth/email-already-in-use") {
+          // Fire the alert
+          Swal.fire({
+            icon: "error",
+            title: "Account Already Exists !",
+            text: "Email address is already in use by another account",
+            showConfirmButton: false,
+            timer: 2500,
+          }).then(() => {
+            // Logic
+          });
+        }
+
         // SignUp Error
         dispatch({ type: "SIGNUP_ERROR", err });
       });
