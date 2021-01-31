@@ -10,10 +10,10 @@ import { Redirect } from "react-router-dom";
 const DiaryDetails = (props) => {
   const id = props.match.params.id; // Get diary ID
   const { entries, auth } = props;
-
+  let authorId = auth.uid;
   let entriesToShow = [];
   let [diaryName, setDiaryName] = useState("");
-
+  let [showButton, setShowButton] = useState(false);
   // Get DiaryName from firebase
   const db = getFirebase().firestore();
 
@@ -24,6 +24,9 @@ const DiaryDetails = (props) => {
       .get()
       .then((snapshot) => {
         setDiaryName(snapshot.data().title);
+        if (snapshot.data().authorId === authorId) {
+          setShowButton(true);
+        }
       })
       .catch((err) => {
         console.log("NO DATA FOUND");
@@ -37,13 +40,22 @@ const DiaryDetails = (props) => {
       }
     });
 
+  // console.log("diary", diaryAuthorId);
+  // console.log("author", authorId);
+
   // Redirect
   if (!auth.uid) return <Redirect to="/signin" />;
+
   return (
     <div className="dashboard container">
       <div className="row">
         <div className="col s12 m6">
-          <EntriesList id={id} entries={entriesToShow} diaryName={diaryName} />
+          <EntriesList
+            id={id}
+            entries={entriesToShow}
+            diaryName={diaryName}
+            showButton={showButton}
+          />
         </div>
       </div>
     </div>

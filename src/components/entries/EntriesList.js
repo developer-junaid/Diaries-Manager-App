@@ -3,9 +3,18 @@ import EntrySummary from "./EntrySummary";
 import { Link } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 
-const EntriesList = ({ id, entries, diaryName }) => {
+const EntriesList = ({ id, entries, diaryName, showButton }) => {
   // handle loading state
   const [isLoading, setIsLoading] = useState(true);
+  let button = showButton ? (
+    <Link
+      title="create new entry"
+      className="btn-floating btn-large  waves-effect hoverable waves-light green"
+      to={`/diary/${id}/create`}
+    >
+      <i className="material-icons">add</i>
+    </Link>
+  ) : null;
 
   useEffect(() => {
     // If entries are there make loader false
@@ -44,15 +53,7 @@ const EntriesList = ({ id, entries, diaryName }) => {
             <EntrySummary diaryId={id} key={entry.id} entry={entry} />
           ))}
 
-        <div className="fixed-action-btn">
-          <Link
-            title="create new entry"
-            className="btn-floating btn-large  waves-effect hoverable waves-light green"
-            to={`/diary/${id}/create`}
-          >
-            <i className="material-icons">add</i>
-          </Link>
-        </div>
+        <div className="fixed-action-btn">{button}</div>
       </div>
     );
   }

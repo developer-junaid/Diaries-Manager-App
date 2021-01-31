@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { updateDiary } from "../../store/actions/diaryActions";
 import moment from "moment";
 
-const DiarySummary = ({ diary, updateDiary, userProfile }) => {
+const DiarySummary = ({ diary, updateDiary, userProfile, canEdit }) => {
   // variables
   const title = diary.title;
   const type = diary.type;
@@ -57,6 +57,21 @@ const DiarySummary = ({ diary, updateDiary, userProfile }) => {
       }
     });
   };
+
+  // Button conditional rendering
+  const button = canEdit ? (
+    <Link
+      to={"/diary/" + diary.id + "/create"}
+      className="btn btn-small waves-effect  waves-light entries-btn"
+      title="Add entry"
+      style={{
+        width: "9%",
+        backgroundColor: "#4aa69b",
+      }}
+    >
+      <i className="material-icons right">add</i>
+    </Link>
+  ) : null;
 
   return (
     <div className="card hoverable z-depth-2 diary-summary">
@@ -117,17 +132,7 @@ const DiarySummary = ({ diary, updateDiary, userProfile }) => {
               <i className="material-icons right">send</i>
             </Link>
           ) : (
-            <Link
-              to={"/diary/" + diary.id + "/create"}
-              className="btn btn-small waves-effect  waves-light entries-btn"
-              title="Add entry"
-              style={{
-                width: "9%",
-                backgroundColor: "#4aa69b",
-              }}
-            >
-              <i className="material-icons right">add</i>
-            </Link>
+            button
           )}
         </div>
       </div>

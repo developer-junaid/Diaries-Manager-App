@@ -23,13 +23,21 @@ const DiariesList = ({ diaries, authorId }) => {
                   key={diary.id}
                   diary={diary}
                   authorId={authorId}
+                  canEdit={true}
                 />
               );
             }
           } else if (diary.type === "public") {
-            return (
-              <DiarySummary key={diary.id} diary={diary} authorId={authorId} />
-            );
+            // If user is authenticated, He can edit
+            if (diary.authorId === authorId) {
+              return (
+                <DiarySummary key={diary.id} diary={diary} canEdit={true} />
+              );
+            } else {
+              return (
+                <DiarySummary key={diary.id} diary={diary} canEdit={false} />
+              );
+            }
           }
         })}
       <div className="fixed-action-btn">
