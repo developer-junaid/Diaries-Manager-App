@@ -1,17 +1,25 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { connect } from "react-redux";
 import { updateDiary } from "../../store/actions/diaryActions";
 import moment from "moment";
 
-const DiarySummary = ({ diary, updateDiary }) => {
+const DiarySummary = ({ diary, updateDiary, userProfile }) => {
   // variables
   const title = diary.title;
   const type = diary.type;
   const totalEntries = diary.entryIds.length;
+  const [userName, setUserName] = useState(
+    `${diary.authorFirstName} ${diary.authorLastName}`
+  );
 
+  if (userName === `${userProfile.firstName} ${userProfile.lastName}`) {
+    setUserName("You");
+  }
+
+  console.log(userProfile);
   // Handle Click
   const handleClick = () => {
     Swal.fire({
@@ -90,10 +98,7 @@ const DiarySummary = ({ diary, updateDiary }) => {
         </span>
 
         <p>
-          Posted by{" "}
-          <span className="pink-text">
-            {diary.authorFirstName} {diary.authorLastName}
-          </span>
+          Posted by <span className="pink-text">{userName}</span>
         </p>
 
         <p className="grey-text">
@@ -131,6 +136,13 @@ const DiarySummary = ({ diary, updateDiary }) => {
   );
 };
 
+// Map State to props
+const mapStateToProps = (state) => {
+  return {
+    userProfile: state.firebase.profile,
+  };
+};
+
 // Map Dispatch to props
 const mapDispatchToProps = (dispatch) => {
   // Attach these to props
@@ -140,4 +152,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(DiarySummary);
+export default connect(mapStateToProps, mapDispatchToProps)(DiarySummary);

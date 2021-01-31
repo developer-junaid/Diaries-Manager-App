@@ -30,6 +30,43 @@ export const signIn = (credentials) => {
         });
       })
       .catch((err) => {
+        // Identify the error
+        if (err.code === "auth/wrong-password") {
+          // Set error to wrong-password
+          // Fire the alert
+          Swal.fire({
+            icon: "error",
+            title: "Password is incorrect !",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            // Empty the form
+            window.location.reload(false);
+          });
+        } else if (err.code === "auth/user-not-found") {
+          // Fire the alert
+          Swal.fire({
+            icon: "error",
+            title: "User not found !",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            // Empty the form
+            window.location.reload(false);
+          });
+        } else if (err.code === "auth/too-many-requests") {
+          // Fire the alert
+          Swal.fire({
+            icon: "error",
+            title: "Too many failed login attempts, please try again later !",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            // Empty the form
+            window.location.reload(false);
+          });
+        }
+
         // Login Error
         dispatch({ type: "LOGIN_ERROR", err });
       });
@@ -46,6 +83,15 @@ export const signOut = () => {
       .auth()
       .signOut()
       .then(() => {
+        // Fire the alert
+        Swal.fire({
+          icon: "success",
+          title: "Signed Out !",
+          showConfirmButton: false,
+          timer: 1000,
+        }).then(() => {
+          // Logic
+        });
         // Sign Out Success
         dispatch({ type: "SIGNOUT_SUCCESS" });
       });
@@ -78,6 +124,16 @@ export const signUp = (newUser) => {
       .then(() => {
         // SignUp Success
         dispatch({ type: "SIGNUP_SUCCESS" });
+
+        // Alert Success
+        Swal.fire({
+          icon: "success",
+          title: "Signup Success!",
+          showConfirmButton: false,
+          timer: 1500,
+        }).then(() => {
+          // Logic
+        });
 
         // Add Notification for user joined
         const notification = {

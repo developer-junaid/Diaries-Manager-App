@@ -1,7 +1,8 @@
 import React from "react";
 import moment from "moment";
+import { connect } from "react-redux";
 
-const Notifications = ({ notifications }) => {
+const Notifications = ({ notifications, userProfile }) => {
   return (
     <div className="section">
       <h4
@@ -17,9 +18,15 @@ const Notifications = ({ notifications }) => {
             {notifications &&
               notifications.map((notification) => {
                 const id = notification.id;
-                const user = notification.user;
+                let user = notification.user;
                 const content = notification.content;
                 const time = notification.time;
+
+                if (
+                  user === `${userProfile.firstName} ${userProfile.lastName}`
+                ) {
+                  user = "You";
+                }
 
                 // Return
                 return (
@@ -39,4 +46,11 @@ const Notifications = ({ notifications }) => {
   );
 };
 
-export default Notifications;
+// Map State to props
+const mapStateToProps = (state) => {
+  return {
+    userProfile: state.firebase.profile,
+  };
+};
+
+export default connect(mapStateToProps)(Notifications);
