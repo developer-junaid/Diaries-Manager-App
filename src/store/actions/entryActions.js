@@ -1,13 +1,12 @@
+import Swal from "sweetalert2";
+
 // Create Entry Action
 export const createEntry = (entry) => {
   return (dispatch, getState, { getFirebase }) => {
     // Make Async call to database
 
     // Initialize Firestore Database
-    // Setup Database
     const db = getFirebase().firestore();
-    // const profile = getState().firebase.profile;
-    // const authorId = getState().firebase.auth.uid;
 
     // Add Entry to collection
     db.collection("entries")
@@ -46,9 +45,46 @@ export const createEntry = (entry) => {
 
 // Update Entry Action
 export const updateEntry = (entry) => {
-  return (dispatch, getState) => {
+  return (dispatch, getState, { getFirebase }) => {
     // Make Async call to database
     // Then dispatch an action
     dispatch({ type: "UPDATE_ENTRY", entry });
+  };
+};
+
+// Delete Entry Action
+export const deleteEntry = (entry) => {
+  return (dispatch, getState, { getFirebase }) => {
+    // Make Async call to database
+    // Initialize Firestore Database
+    const db = getFirebase().firestore();
+
+    // Confirmation alert
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Delete doc
+        db.collection("entries")
+          .doc(entry.id)
+          .delete()
+          .then(() => {
+            // Entry Deleted
+            // Then dispatch an action
+            dispatch({ type: "DELETE_ENTRY", entry });
+            Swal.fire("Deleted!", "Entry has been deleted.", "success");
+          })
+          .catch((err) => {
+            // Entry delete error
+            dispatch({ type: "DELETE_ENTRY_ERROR", err });
+          });
+      }
+    });
   };
 };

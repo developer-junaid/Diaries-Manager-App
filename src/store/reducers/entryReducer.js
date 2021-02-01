@@ -19,6 +19,16 @@ const entryReducer = (state = initialState, action) => {
       console.log("updated entry", action.entry);
       return state;
 
+    //  DELETE_ENTRY
+    case "DELETE_ENTRY":
+      console.log("Deleted entry", action.entry);
+      return state;
+
+    //  DELETE_ENTRY_ERROR
+    case "DELETE_ENTRY_ERROR":
+      console.log("Deleted entry error: ", action.err);
+      return state;
+
     default:
       return state;
   }

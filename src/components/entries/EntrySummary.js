@@ -2,6 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { updateEntry } from "../../store/actions/entryActions";
+import { deleteEntry } from "../../store/actions/entryActions";
 import { useHistory } from "react-router-dom";
 import moment from "moment";
 
@@ -14,6 +15,11 @@ const EntrySummary = (props) => {
   // Handle Clicks
   const handleEditClick = () => {
     history.push(`/diary/${props.diaryId}/${props.entry.id}/edit`);
+  };
+
+  const handleDelete = () => {
+    // Logic
+    props.deleteEntry(props.entry);
   };
 
   const handleViewClick = () => {
@@ -30,7 +36,7 @@ const EntrySummary = (props) => {
 
   let deleteButton = props.isAuthenticated ? (
     <a
-      onClick={handleEditClick}
+      onClick={handleDelete}
       title="delete"
       style={{ margin: "0 1rem" }}
       className="secondary-content"
@@ -78,6 +84,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // Take diary and pass to updateDiary action creator
     updateEntry: (entry) => dispatch(updateEntry(entry)),
+    deleteEntry: (entry) => dispatch(deleteEntry(entry)),
   };
 };
 
