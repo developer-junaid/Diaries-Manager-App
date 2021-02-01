@@ -20,23 +20,35 @@ const EntrySummary = (props) => {
     history.push(`/diary/${props.diaryId}/${props.entry.id}`);
   };
 
+  let editButton = props.isAuthenticated ? (
+    <a onClick={handleEditClick} title="edit" className="secondary-content">
+      <i style={{ color: "#424242" }} className="material-icons edit-icon">
+        create
+      </i>
+    </a>
+  ) : null;
+
+  let deleteButton = props.isAuthenticated ? (
+    <a
+      onClick={handleEditClick}
+      title="delete"
+      style={{ margin: "0 1rem" }}
+      className="secondary-content"
+    >
+      <i style={{ color: "#424242" }} className="material-icons edit-icon">
+        delete
+      </i>
+    </a>
+  ) : null;
+
   return (
     <div className="card hoverable z-depth-2 entry-summary">
       <div className="card-content grey-text text-darken-3">
         <div className="card-title">
           {title}
-          <a
-            onClick={handleEditClick}
-            title="edit"
-            className="secondary-content"
-          >
-            <i
-              style={{ color: "#424242" }}
-              className="material-icons edit-icon"
-            >
-              create
-            </i>
-          </a>
+
+          {deleteButton}
+          {editButton}
           <a
             onClick={handleViewClick}
             style={{ margin: "0 1rem" }}

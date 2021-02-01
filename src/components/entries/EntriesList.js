@@ -50,7 +50,12 @@ const EntriesList = ({ id, entries, diaryName, showButton }) => {
 
         {entries &&
           entries.map((entry) => (
-            <EntrySummary diaryId={id} key={entry.id} entry={entry} />
+            <EntrySummary
+              diaryId={id}
+              key={entry.id}
+              isAuthenticated={showButton}
+              entry={entry}
+            />
           ))}
 
         <div className="fixed-action-btn">{button}</div>

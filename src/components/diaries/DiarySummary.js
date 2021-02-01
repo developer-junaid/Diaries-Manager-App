@@ -73,24 +73,26 @@ const DiarySummary = ({ diary, updateDiary, userProfile, canEdit }) => {
     </Link>
   ) : null;
 
+  // Button conditional rendering
+  const editButton = canEdit ? (
+    <a
+      onClick={handleClick}
+      title="edit"
+      style={{ color: "#4aa69b" }}
+      className="primary-content"
+    >
+      <i style={{ color: "#424242" }} className="material-icons edit-icon">
+        create
+      </i>
+    </a>
+  ) : null;
+
   return (
     <div className="card hoverable z-depth-2 diary-summary">
       <div className="card-content grey-text text-darken-3">
         <div className="card-title">
-          <a
-            onClick={handleClick}
-            title="edit"
-            style={{ color: "#4aa69b" }}
-            className="primary-content"
-          >
-            <i
-              style={{ color: "#424242" }}
-              className="material-icons edit-icon"
-            >
-              create
-            </i>
-          </a>
-          &nbsp;{title}
+          {editButton}
+          {title}
           <a
             title={type === "private" ? "private" : "public"}
             href="#!"
