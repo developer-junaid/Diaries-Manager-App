@@ -49,7 +49,7 @@ const DiaryDetails = (props) => {
   return (
     <div className="dashboard container">
       <div className="row">
-        <div className="col s12 m6">
+        <div className="col s12 l6">
           <EntriesList
             id={id}
             entries={entriesToShow}
