@@ -70,7 +70,7 @@ const EntrySummary = (props) => {
           </a>
         </div>
 
-        <p>{content}</p>
+        <p className="truncate">{content}</p>
 
         <p className="grey-text">{moment(createdAt.toDate()).calendar()}</p>
       </div>

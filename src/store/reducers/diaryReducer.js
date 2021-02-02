@@ -74,6 +74,11 @@ const diaryReducer = (state = initialState, action) => {
       console.log("updated diary", action.diary);
       return state;
 
+    // DELETE_DIARY
+    case "DELETE_DIARY":
+      console.log("Deleted diary", action.diary);
+      return state;
+
     // If Create Project
     case "CREATE_NOTIFICATION":
       console.log("created notification", action.notification);

@@ -3,10 +3,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { connect } from "react-redux";
-import { updateDiary } from "../../store/actions/diaryActions";
+import { deleteDiary, updateDiary } from "../../store/actions/diaryActions";
 import moment from "moment";
 
-const DiarySummary = ({ diary, updateDiary, userProfile, canEdit }) => {
+const DiarySummary = ({
+  diary,
+  updateDiary,
+  deleteDiary,
+  userProfile,
+  canEdit,
+}) => {
   // variables
   const title = diary.title;
   const type = diary.type;
@@ -58,6 +64,12 @@ const DiarySummary = ({ diary, updateDiary, userProfile, canEdit }) => {
     });
   };
 
+  // handleDelete
+  const handleDelete = () => {
+    //logic
+    deleteDiary(diary);
+  };
+
   // Button conditional rendering
   const button = canEdit ? (
     <Link
@@ -79,10 +91,24 @@ const DiarySummary = ({ diary, updateDiary, userProfile, canEdit }) => {
       onClick={handleClick}
       title="edit"
       style={{ color: "#4aa69b" }}
-      className="primary-content"
+      className="secondary-content"
     >
       <i style={{ color: "#424242" }} className="material-icons edit-icon">
         create
+      </i>
+    </a>
+  ) : null;
+
+  // Button conditional rendering
+  const deleteButton = canEdit ? (
+    <a
+      onClick={handleDelete}
+      title="delete"
+      style={{ color: "#4aa69b" }}
+      className="secondary-content"
+    >
+      <i style={{ color: "#424242" }} className="material-icons edit-icon">
+        delete
       </i>
     </a>
   ) : null;
@@ -102,6 +128,7 @@ const DiarySummary = ({ diary, updateDiary, userProfile, canEdit }) => {
               {type === "private" ? "lock" : "lock_open"}
             </i>
           </a>
+          {deleteButton}
         </div>
 
         <span
@@ -155,6 +182,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // Take diary and pass to updateDiary action creator
     updateDiary: (diary) => dispatch(updateDiary(diary)),
+    deleteDiary: (diary) => dispatch(deleteDiary(diary)),
   };
 };
 
