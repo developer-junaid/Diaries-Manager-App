@@ -47,8 +47,32 @@ export const createEntry = (entry) => {
 export const updateEntry = (entry) => {
   return (dispatch, getState, { getFirebase }) => {
     // Make Async call to database
-    // Then dispatch an action
-    dispatch({ type: "UPDATE_ENTRY", entry });
+    // Initialize db
+    const db = getFirebase().firestore();
+
+    const collection = "entries";
+    const id = entry.entryId;
+    const newTitle = entry.title;
+    const newContent = entry.content;
+
+    console.log(id, newTitle, newContent);
+    // update entry
+    const entryToUpdate = db.collection(collection).doc(id);
+
+    entryToUpdate
+      .update({
+        title: newTitle,
+        content: newContent,
+      })
+      .then(() => {
+        // Entry Updated
+        // Then dispatch an action
+        dispatch({ type: "UPDATE_ENTRY", entry });
+      })
+      .catch((err) => {
+        // If anything goes wrong
+        dispatch({ type: "UPDATE_ENTRY_ERROR", err });
+      });
   };
 };
 

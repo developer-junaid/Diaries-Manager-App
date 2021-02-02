@@ -66,20 +66,6 @@ function EntryDetails(props) {
       </div>
     );
   }
-
-  // Filter diaries and entries
-  // props.diaries.map((diary) => {
-  //   // Filter our diary
-  //   if (diary.id === diaryId) {
-  //     diaryName = diary.title;
-  //     diary.entries.map((entry) => {
-  //       if (entry.id === entryId) {
-  //         entryTitle = entry.title;
-  //         entryContent = entry.content;
-  //       }
-  //     });
-  //   }
-  // });
 }
 
 // Map State to props
@@ -95,44 +81,3 @@ export default compose(
     { collection: "entries" }, // Collection entries
   ])
 )(EntryDetails);
-
-//  if (isLoading) {
-//    return (
-//      <div
-//        style={{
-//          width: "100%",
-//          height: "100%",
-//          minHeight: "90vh",
-//          display: "flex",
-//          justifyContent: "flex-end",
-//          alignItems: "center",
-//        }}
-//      >
-//        <BeatLoader loading />
-//      </div>
-//    );
-//  } else {
-//    return (
-//      <div className="project-list section">
-//        <h4 className="card-title" style={{ color: "#424242" }}>
-//          {diaryName}
-//        </h4>
-//        <div className="divider"></div>
-
-//        {entries &&
-//          entries.map((entry) => (
-//            <EntrySummary diaryId={id} key={entry.id} entry={entry} />
-//          ))}
-
-//        <div className="fixed-action-btn">
-//          <Link
-//            title="create new entry"
-//            className="btn-floating btn-large  waves-effect hoverable waves-light green"
-//            to={`/diary/${id}/create`}
-//          >
-//            <i className="material-icons">add</i>
-//          </Link>
-//        </div>
-//      </div>
-//    );
-//  }

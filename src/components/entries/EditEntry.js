@@ -3,6 +3,8 @@ import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateEntry } from "../../store/actions/entryActions";
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
 
 // SignIn Class Component
 const EditEntry = (props) => {
@@ -15,25 +17,24 @@ const EditEntry = (props) => {
   let entryTitle = "";
   let entryContent = "";
 
-  // Filter diaries and entries
-  props.diaries.map((diary) => {
-    // Filter our diary
-    if (diary.id === diaryId) {
-      diary.entries.map((entry) => {
-        if (entry.id === entryId) {
-          entryTitle = entry.title;
-          entryContent = entry.content;
-        }
-      });
-    }
-  });
+  console.log(diaryId, entryId);
+
+  props.entries &&
+    props.entries.map((entry) => {
+      if (entry.diaryId === diaryId) {
+        entryTitle = entry.title;
+        entryContent = entry.content;
+      }
+    });
 
   // State
   const [state, setState] = useState({
+    entryId: entryId,
     title: entryTitle,
     content: entryContent,
   });
 
+  console.log(state);
   // Functions
   const handleChange = (e) => {
     setState({
@@ -90,10 +91,11 @@ const EditEntry = (props) => {
     </div>
   );
 };
+
 // Map State to props
 const mapStateToProps = (state) => {
   return {
-    diaries: state.diary.diaries,
+    entries: state.firestore.ordered.entries,
   };
 };
 
@@ -106,4 +108,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditEntry);
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  firestoreConnect([
+    { collection: "entries" }, // Collection entries
+  ])
+)(EditEntry);
