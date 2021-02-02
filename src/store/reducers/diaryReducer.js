@@ -74,6 +74,11 @@ const diaryReducer = (state = initialState, action) => {
       console.log("updated diary", action.diary);
       return state;
 
+    // UPDATE DIARY
+    case "UPDATE_DIARY_ERROR":
+      console.log("Error updating diary", action.err);
+      return state;
+
     // DELETE_DIARY
     case "DELETE_DIARY":
       console.log("Deleted diary", action.diary);

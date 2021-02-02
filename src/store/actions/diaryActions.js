@@ -45,10 +45,34 @@ export const createDiary = (diary) => {
 
 // Update Diary Action
 export const updateDiary = (diary) => {
-  return (dispatch, getState) => {
+  return (dispatch, getState, { getFirebase }) => {
     // Make Async call to database
-    // Then dispatch an action
-    dispatch({ type: "UPDATE_DIARY", diary });
+    // Initilalize db
+    const db = getFirebase().firestore();
+
+    const collection = "diaries";
+    const id = diary.diaryId;
+    const newTitle = diary.title;
+    const newType = diary.type;
+
+    console.log(id, newTitle, newType);
+    // update entry
+    const diaryToUpdate = db.collection(collection).doc(id);
+
+    diaryToUpdate
+      .update({
+        title: newTitle,
+        type: newType,
+      })
+      .then(() => {
+        // Diary Updated
+        // Then dispatch an action
+        dispatch({ type: "UPDATE_DIARY", diary });
+      })
+      .catch((err) => {
+        // If anything goes wrong
+        dispatch({ type: "UPDATE_DIARY_ERROR", err });
+      });
   };
 };
 
