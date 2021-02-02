@@ -40,9 +40,6 @@ const DiaryDetails = (props) => {
       }
     });
 
-  // console.log("diary", diaryAuthorId);
-  // console.log("author", authorId);
-
   // Redirect
   if (!auth.uid) return <Redirect to="/signin" />;
 
@@ -50,12 +47,14 @@ const DiaryDetails = (props) => {
     <div className="dashboard container">
       <div className="row">
         <div className="col s12 l10">
-          <EntriesList
-            id={id}
-            entries={entriesToShow}
-            diaryName={diaryName}
-            showButton={showButton}
-          />
+          {entriesToShow && (
+            <EntriesList
+              id={id}
+              entries={entriesToShow}
+              diaryName={diaryName}
+              showButton={showButton}
+            />
+          )}
         </div>
       </div>
     </div>

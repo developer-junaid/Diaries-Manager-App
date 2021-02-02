@@ -82,33 +82,75 @@ export const deleteEntry = (entry) => {
     // Make Async call to database
     // Initialize Firestore Database
     const db = getFirebase().firestore();
+    const diaryId = entry.diaryId;
+    const entryToDelete = entry.id;
+    const diary = db.collection("diaries").doc(diaryId);
 
-    // Confirmation alert
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // Delete doc
-        db.collection("entries")
-          .doc(entry.id)
-          .delete()
-          .then(() => {
-            // Entry Deleted
-            // Then dispatch an action
-            dispatch({ type: "DELETE_ENTRY", entry });
-            Swal.fire("Deleted!", "Entry has been deleted.", "success");
-          })
-          .catch((err) => {
-            // Entry delete error
-            dispatch({ type: "DELETE_ENTRY_ERROR", err });
-          });
-      }
+    diary.get().then((snapshot) => {
+      let entryIds = snapshot.data().entryIds;
+      const result = entryIds.filter((entryId) => entryId !== entryToDelete);
+
+      // Push to diary entryIds
+      db.collection("diaries")
+        .doc(diaryId)
+        .update({ entryIds: result })
+        .then(() => {
+          console.log("Diary entryIds updated");
+          // Delete entry
+
+          // Delete doc
+          db.collection("entries")
+            .doc(entry.id)
+            .delete()
+            .then(() => {
+              // Entry Deleted
+              // Then dispatch an action
+              dispatch({ type: "DELETE_ENTRY", entry });
+              Swal.fire("Deleted!", "Entry has been deleted.", "success").then(
+                () => {
+                  // logic
+                }
+              );
+            })
+            .catch((err) => {
+              // Entry delete error
+              dispatch({ type: "DELETE_ENTRY_ERROR", err });
+            });
+        });
     });
+
+    // // Confirmation alert
+    // Swal.fire({
+    //   title: "Are you sure?",
+    //   text: "You won't be able to revert this!",
+    //   icon: "warning",
+    //   showCancelButton: true,
+    //   confirmButtonColor: "#3085d6",
+    //   cancelButtonColor: "#d33",
+    //   confirmButtonText: "Yes, delete it!",
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     // Delete doc
+    //     db.collection("entries")
+    //       .doc(entry.id)
+    //       .delete()
+    //       .then(() => {
+    //         // Entry Deleted
+    //         // Delete that entry Id from that diary
+    //         let diary = db.collection("diaries").doc(entry.diaryId)
+    //         diary.update({
+    //           entryIds:
+    //         })
+
+    //         // Then dispatch an action
+    //         dispatch({ type: "DELETE_ENTRY", entry });
+    //         Swal.fire("Deleted!", "Entry has been deleted.", "success");
+    //       })
+    //       .catch((err) => {
+    //         // Entry delete error
+    //         dispatch({ type: "DELETE_ENTRY_ERROR", err });
+    //       });
+    // }
+    // });
   };
 };

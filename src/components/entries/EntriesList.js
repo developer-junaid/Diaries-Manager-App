@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import EntrySummary from "./EntrySummary";
 import { Link } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
+import { Redirect } from "react-router-dom";
 
 const EntriesList = ({ id, entries, diaryName, showButton }) => {
   // handle loading state
@@ -33,7 +34,7 @@ const EntriesList = ({ id, entries, diaryName, showButton }) => {
           height: "100%",
           minHeight: "90vh",
           display: "flex",
-          justifyContent: "flex-end",
+          justifyContent: "center",
           alignItems: "center",
         }}
       >
@@ -41,6 +42,8 @@ const EntriesList = ({ id, entries, diaryName, showButton }) => {
       </div>
     );
   } else {
+    // Redirect
+    if (entries.length < 1) return <Redirect to="/" />;
     return (
       <div className="project-list section">
         <h4 className="card-title" style={{ color: "#424242" }}>
