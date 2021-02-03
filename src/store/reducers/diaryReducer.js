@@ -61,37 +61,30 @@ const diaryReducer = (state = initialState, action) => {
   switch (action.type) {
     // CREATE_DIARY
     case "CREATE_DIARY":
-      console.log("created diary", action.diary);
       return state;
 
     // CREATE_DIARY_ERROR
     case "CREATE_DIARY_ERROR":
-      console.log("ERROR creating diary", action.err);
       return state;
 
     // UPDATE DIARY
     case "UPDATE_DIARY":
-      console.log("updated diary", action.diary);
       return state;
 
     // UPDATE DIARY
     case "UPDATE_DIARY_ERROR":
-      console.log("Error updating diary", action.err);
       return state;
 
     // DELETE_DIARY
     case "DELETE_DIARY":
-      console.log("Deleted diary", action.diary);
       return state;
 
     // If Create Project
     case "CREATE_NOTIFICATION":
-      console.log("created notification", action.notification);
       return state;
 
     // If Error occurs
     case "CREATE_NOTIFICATION_ERROR":
-      console.log("create notification error", action.err);
       return state;
 
     default:

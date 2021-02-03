@@ -17,8 +17,6 @@ const EditEntry = (props) => {
   let entryTitle = "";
   let entryContent = "";
 
-  console.log(diaryId, entryId);
-
   props.entries &&
     props.entries.map((entry) => {
       if (entry.diaryId === diaryId) {
@@ -34,7 +32,6 @@ const EditEntry = (props) => {
     content: entryContent,
   });
 
-  console.log(state);
   // Functions
   const handleChange = (e) => {
     setState({

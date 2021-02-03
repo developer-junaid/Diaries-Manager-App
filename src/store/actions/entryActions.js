@@ -55,7 +55,6 @@ export const updateEntry = (entry) => {
     const newTitle = entry.title;
     const newContent = entry.content;
 
-    console.log(id, newTitle, newContent);
     // update entry
     const entryToUpdate = db.collection(collection).doc(id);
 
@@ -95,7 +94,6 @@ export const deleteEntry = (entry) => {
         .doc(diaryId)
         .update({ entryIds: result })
         .then(() => {
-          console.log("Diary entryIds updated");
           // Delete entry
 
           // Delete doc

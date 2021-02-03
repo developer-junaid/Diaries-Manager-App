@@ -36,11 +36,10 @@ const DiaryDetails = (props) => {
         }
       })
       .catch((err) => {
-        console.log("NO DATA FOUND");
+        // No Data
       });
 
     if (entries) {
-      console.log("entries found");
       if (entries.find(findEntries)) {
       } else {
         // Redirect to dashboard

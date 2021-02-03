@@ -22,6 +22,7 @@ class Dashboard extends Component {
             justifyContent: "center",
             alignItems: "center",
             minWidth: "550px",
+            minHeight: "100vh",
           }}
           className="dashboard container-fluid"
         >

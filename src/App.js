@@ -10,6 +10,7 @@ import CreateDiary from "./components/diaries/CreateDiary";
 import CreateEntry from "./components/entries/CreateEntry";
 import EditEntry from "./components/entries/EditEntry";
 import EditDiary from "./components/diaries/EditDiary";
+import Footer from "./components/layout/Footer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/diary/:id/:id/edit" component={EditEntry} />
         <Route path="/diary/:id/:id" component={EntryDetails} />
       </Switch>
+      <Footer />
     </Router>
   );
 }
