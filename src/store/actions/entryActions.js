@@ -88,48 +88,32 @@ export const deleteEntry = (entry) => {
     diary.get().then((snapshot) => {
       let entryIds = snapshot.data().entryIds;
       const result = entryIds.filter((entryId) => entryId !== entryToDelete);
+      // Push to diary entryIds
+      db.collection("diaries")
+        .doc(diaryId)
+        .update({ entryIds: result })
+        .then(() => {
+          // Delete entry
 
-      // Confirmation alert
-      Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          // Push to diary entryIds
-          db.collection("diaries")
-            .doc(diaryId)
-            .update({ entryIds: result })
+          // Delete doc
+          db.collection("entries")
+            .doc(entry.id)
+            .delete()
             .then(() => {
-              // Delete entry
-
-              // Delete doc
-              db.collection("entries")
-                .doc(entry.id)
-                .delete()
-                .then(() => {
-                  // Entry Deleted
-                  // Then dispatch an action
-                  dispatch({ type: "DELETE_ENTRY", entry });
-                  Swal.fire(
-                    "Deleted!",
-                    "Entry has been deleted.",
-                    "success"
-                  ).then(() => {
-                    // logic
-                  });
-                })
-                .catch((err) => {
-                  // Entry delete error
-                  dispatch({ type: "DELETE_ENTRY_ERROR", err });
-                });
+              // Entry Deleted
+              // Then dispatch an action
+              dispatch({ type: "DELETE_ENTRY", entry });
+              Swal.fire("Deleted!", "Entry has been deleted.", "success").then(
+                () => {
+                  // logic
+                }
+              );
+            })
+            .catch((err) => {
+              // Entry delete error
+              dispatch({ type: "DELETE_ENTRY_ERROR", err });
             });
-        }
-      });
+        });
     });
   };
 };

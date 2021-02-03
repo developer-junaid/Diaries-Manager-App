@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { firestoreConnect } from "react-redux-firebase";
 import { compose } from "redux";
 import { getFirebase } from "react-redux-firebase";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 //Project Details
 const DiaryDetails = (props) => {
@@ -14,7 +14,6 @@ const DiaryDetails = (props) => {
   let entriesToShow = [];
   let [diaryName, setDiaryName] = useState("");
   let [showButton, setShowButton] = useState(false);
-  const history = useHistory();
 
   // Get DiaryName from firebase
   const db = getFirebase().firestore();
@@ -43,7 +42,7 @@ const DiaryDetails = (props) => {
       if (entries.find(findEntries)) {
       } else {
         // Redirect to dashboard
-        history.push("/");
+        // history.push("/");
       }
     }
   }, [entries]);
