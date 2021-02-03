@@ -27,6 +27,8 @@ function App() {
         <Route path="/diary/:id/:id/edit" component={EditEntry} />
         <Route path="/diary/:id/:id" component={EntryDetails} />
       </Switch>
+      <div style={{ height: "150px" }}></div>
+
       <Footer />
     </Router>
   );

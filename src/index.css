@@ -5,11 +5,12 @@ html {
 body {
   margin: 0;
   padding: 0;
+  position: relative;
   font-family: sans-serif;
   background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)),
     url(./images/diary.jpg) no-repeat;
   background-size: cover;
-  min-height: 100%;
+  min-height: 100vh;
   background-color: #95e8f3;
 }
 

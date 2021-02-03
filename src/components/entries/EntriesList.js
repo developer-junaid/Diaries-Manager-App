@@ -60,7 +60,6 @@ const EntriesList = ({ id, entries, diaryName, showButton }) => {
               entry={entry}
             />
           ))}
-
         <div className="fixed-action-btn">{button}</div>
       </div>
     );
