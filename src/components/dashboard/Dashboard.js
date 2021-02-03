@@ -16,12 +16,20 @@ class Dashboard extends Component {
     // Return Dashboard
     if (diaries) {
       return (
-        <div className="dashboard container">
+        <div
+          style={{
+            padding: "0 4rem",
+            justifyContent: "center",
+            alignItems: "center",
+            minWidth: "550px",
+          }}
+          className="dashboard container-fluid"
+        >
           <div className="row">
-            <div className="col s12 l6">
+            <div className="col s12 l6 ">
               <DiariesList diaries={diaries} authorId={auth.uid} />
             </div>
-            <div className="col s12 l5 offset-l1">
+            <div className="col s12 l4 offset-l1">
               <Notifications notifications={notifications} />
             </div>
           </div>
