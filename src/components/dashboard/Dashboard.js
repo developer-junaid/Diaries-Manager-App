@@ -24,7 +24,7 @@ class Dashboard extends Component {
             minWidth: "550px",
             minHeight: "100vh",
           }}
-          className="dashboard container-fluid"
+          className="dashboard container"
         >
           <div className="row">
             <div className="col s12 l6 ">
