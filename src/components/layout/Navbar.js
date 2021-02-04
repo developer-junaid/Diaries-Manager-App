@@ -15,7 +15,7 @@ const Navbar = (props) => {
   return (
     <nav className="nav-wrapper grey darken-3">
       <div className="container">
-        <Link to="/" className="brand-logo">
+        <Link to="/" className="brand-logo left" style={{ marginLeft: "1rem" }}>
           Diaries App
         </Link>
         {links}
