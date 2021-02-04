@@ -26,7 +26,7 @@ const EditDiary = (props) => {
   const [state, setState] = useState({
     diaryId: diaryId,
     title: diaryTitle,
-    type: "public",
+    type: diaryType,
     entryIds: [],
   });
 
