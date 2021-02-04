@@ -2,7 +2,7 @@
 
 ### _Diaries Manager Applciation, where Users can add and store "Public" and "Private" Diaries, and View each other's public diaries !!_
 
-### Demo Video :link: 
+### Demo Video :link: https://youtu.be/upgTPVDa4D4
 
 ### Link :link: https://diaries-manager.web.app/
 
