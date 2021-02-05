@@ -6,6 +6,7 @@ import { compose } from "redux";
 import { BeatLoader } from "react-spinners";
 import { Redirect } from "react-router-dom";
 import Notifications from "./Notifications";
+import "./dashboard.css";
 
 // Dashboard
 class Dashboard extends Component {
@@ -21,7 +22,7 @@ class Dashboard extends Component {
             padding: "0 4rem",
             justifyContent: "center",
             alignItems: "center",
-            minWidth: "550px",
+            minWidth: "500px",
             minHeight: "100vh",
           }}
           className="dashboard container"
