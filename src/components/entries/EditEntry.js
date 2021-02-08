@@ -20,8 +20,10 @@ const EditEntry = (props) => {
   props.entries &&
     props.entries.map((entry) => {
       if (entry.diaryId === diaryId) {
-        entryTitle = entry.title;
-        entryContent = entry.content;
+        if (entryId === entry.id) {
+          entryTitle = entry.title;
+          entryContent = entry.content;
+        }
       }
     });
 
