@@ -11,7 +11,8 @@ import "./dashboard.css";
 // Dashboard
 class Dashboard extends Component {
   render() {
-    const { diaries, auth, notifications } = this.props;
+    const { diaries, auth, notifications, data } = this.props;
+    console.log("data", data);
     if (!auth.uid) return <Redirect to="/signin" />;
 
     // Return Dashboard
@@ -63,6 +64,7 @@ const mapStateToProps = (state) => {
     diaries: state.firestore.ordered.diaries,
     entries: state.firestore.ordered.entries,
     auth: state.firebase.auth,
+    data: state.data,
   };
 };
 

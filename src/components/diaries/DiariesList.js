@@ -1,8 +1,33 @@
 import React from "react";
 import DiarySummary from "./DiarySummary";
 import { Link } from "react-router-dom";
+import { setShowOtherDiaries } from "./../../store/actions/dataActions";
+import { connect } from "react-redux";
+const DiariesList = ({ diaries, authorId, data, setShowOtherDiaries }) => {
+  console.log("showOtherDiaries", data.showOtherDiaries);
+  // Checkbox
+  let checkbox;
+  data.showOtherDiaries
+    ? (checkbox = (
+        <input
+          id="switch"
+          type="checkbox"
+          onChange={(e) => {
+            setShowOtherDiaries(!data.showOtherDiaries);
+          }}
+        />
+      ))
+    : (checkbox = (
+        <input
+          id="switch"
+          type="checkbox"
+          onChange={(e) => {
+            setShowOtherDiaries(!data.showOtherDiaries);
+          }}
+          defaultChecked
+        />
+      ));
 
-const DiariesList = ({ diaries, authorId }) => {
   return (
     <div className="project-list section">
       <h4
@@ -10,7 +35,23 @@ const DiariesList = ({ diaries, authorId }) => {
         style={{ color: "#424242", textShadow: "2px 2px 2px #776a6a" }}
       >
         Diaries
+        <span class="switch secondary-content">
+          <label htmlFor="switch">
+            <span
+              style={{
+                fontSize: "1.3rem",
+                color: "brown",
+                textShadow: "1px 1px 1px gray",
+              }}
+            >
+              My Diaries Only
+            </span>
+            {checkbox}
+            <span class="lever"></span>
+          </label>
+        </span>
       </h4>
+
       <div className="divider"></div>
 
       {diaries &&
@@ -34,9 +75,11 @@ const DiariesList = ({ diaries, authorId }) => {
                 <DiarySummary key={diary.id} diary={diary} canEdit={true} />
               );
             } else {
-              return (
-                <DiarySummary key={diary.id} diary={diary} canEdit={false} />
-              );
+              if (data.showOtherDiaries) {
+                return (
+                  <DiarySummary key={diary.id} diary={diary} canEdit={false} />
+                );
+              }
             }
           }
         })}
@@ -53,4 +96,19 @@ const DiariesList = ({ diaries, authorId }) => {
   );
 };
 
-export default DiariesList;
+// Map State to props
+const mapStateToProps = (state) => {
+  return {
+    data: state.data,
+  };
+};
+
+// Map Dispatch to props
+const mapDispatchToProps = (dispatch) => {
+  // Attach these to props
+  return {
+    setShowOtherDiaries: (value) => dispatch(setShowOtherDiaries(value)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DiariesList);
