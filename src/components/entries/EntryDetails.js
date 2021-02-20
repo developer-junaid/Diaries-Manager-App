@@ -57,7 +57,9 @@ function EntryDetails(props) {
         <div className="card z-depth-0">
           <div className="card-content">
             <span className="card-title">{entryTitle}</span>
-            <pre>{entryContent}</pre>
+            <pre style={{ width: "100%", overflow: "auto" }}>
+              {entryContent}
+            </pre>
           </div>
           <div className="card-action grey lighten-4 grey-text">
             <div>{moment(entryCreatedAt.toDate()).calendar()}</div>
