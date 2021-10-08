@@ -20,7 +20,6 @@ class Dashboard extends Component {
       return (
         <div
           style={{
-            padding: "0 4rem",
             justifyContent: "center",
             alignItems: "center",
             minWidth: "500px",
@@ -29,7 +28,7 @@ class Dashboard extends Component {
           className="dashboard container"
         >
           <div className="row">
-            <div className="col s12 l6 ">
+            <div className="col s12 l7 ">
               <DiariesList diaries={diaries} authorId={auth.uid} />
             </div>
             <div className="col s12 l4 offset-l1">
